@@ -1,0 +1,20 @@
+CREATE DATABASE todo;
+
+USE todo;
+
+CREATE TABLE user(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    user VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE task(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID INT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(50) NOT NULL,
+    finished BOOLEAN NOT NULL,
+    FOREIGN KEY (userID) REFERENCES user(id)
+);
