@@ -5,6 +5,7 @@ class User
 {
     public function __construct()
     {
+        session_start();
         $this->userModel = new UserModel();
     }
 

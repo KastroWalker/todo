@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-tasks {
+    border-collapse: collapse;
+    width: 80%;
+    background-color: #FFF;
+}
+
+.table-tasks th,
+.table-tasks td {
+    text-align: left;
+    padding: 8px;
+}
+
+.table-tasks tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
