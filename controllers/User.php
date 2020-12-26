@@ -31,4 +31,29 @@ class User
 
         header("Location: ");
     }
+
+    public function register()
+    {
+        $email = trim(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+
+        if ($email) {
+            $data = array_diff_key($_POST, ['register' => '']);
+            $data['email'] = $email;
+            $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
+
+            $user = $this->userModel->create($data);
+
+            $_SESSION['user'] = $user;
+
+            header('Location: /views/home.php');
+            exit();
+        } else {
+            $_SESSION['response'] = [
+                'message' => 'Error when registering user',
+                'status' => 'error'
+            ];
+
+            header("Location: ");
+        }
+    }
 }

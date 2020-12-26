@@ -41,4 +41,20 @@ class UserModel
 
         return $stmt->fetchAll();
     }
+
+    public function create(array $data)
+    {
+        $keys = array_keys($data);
+        $values = ':' . implode(',:', $keys);
+        $fields = implode(",", $keys);
+
+        $stmt = $this->connection->prepare("INSERT INTO {$this->table} ({$fields}) VALUES ({$values})");
+        $stmt->execute($data);
+
+        $data['id'] = $this->connection->lastInsertId();
+
+        $data = array_diff_key($data, ['password' => '']);
+
+        return $data;
+    }
 }

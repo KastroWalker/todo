@@ -1,3 +1,13 @@
+<?php
+if ($_POST && $_POST['register']) {
+    require $_SERVER['DOCUMENT_ROOT'] . '/controllers/User.php';
+
+    $user = new User();
+
+    $user->register();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +20,18 @@
 </head>
 
 <body>
-    <p class="display-msg msg-error">
-        Deu ruim ai garaio
-    </p>
+    <?php if (isset($_SESSION['response'])) : ?>
+        <p class="display-msg msg-error">
+            <?= $_SESSION['response']['message'] ?>
+        </p>
+    <?php
+        unset($_SESSION['response']);
+    endif;
+    ?>
 
     <div class="div-register">
         <h1>Register</h1>
-        <form action="../controllers/User.php" class="form-login" method="POST">
+        <form action="" class="form-login" method="POST">
             <div class="input-group">
                 <label for="name" class="label">Name:</label>
                 <input type="text" class="input-field input-name" id="name" name="name">
@@ -37,9 +52,9 @@
                 <input type="password" class="input-field input-password" id="password" name="password">
                 <span class="error error-password">error</span>
             </div>
-            <input type="submit" class="btn btn-submit" value="teste">
+            <button type="submit" value="register" name="register" class="btn btn-submit">Register</button>
         </form>
-        <p class="create-account">Don't have account? <a href="#">sign up</a></p>
+        <p class="create-account">Do you have account? <a href="../index.php">login in</a></p>
     </div>
 </body>
 

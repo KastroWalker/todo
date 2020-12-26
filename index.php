@@ -2,7 +2,7 @@
 if ($_POST && $_POST['login']) {
     require './controllers/User.php';
     $user = new User();
-    
+
     $user->login($_POST['user'], $_POST['password']);
 }
 ?>
@@ -19,13 +19,13 @@ if ($_POST && $_POST['login']) {
 </head>
 
 <body>
-    <?php if(isset($_SESSION['response'])): ?>
-    <p class="display-msg msg-error">
-        <?= $_SESSION['response']['message'] ?>
-    </p>
+    <?php if (isset($_SESSION['response'])) : ?>
+        <p class="display-msg msg-error">
+            <?= $_SESSION['response']['message'] ?>
+        </p>
     <?php
         unset($_SESSION['response']);
-        endif;
+    endif;
     ?>
 
     <div class="div-login">
